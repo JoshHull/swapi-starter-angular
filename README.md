@@ -1,27 +1,39 @@
-# MyApp
+# SwapiApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.  You will need NPM and Angular CLI installed in order run the commands listed here. 
 
-## Development server
+## Starting the App within a Development Container
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### First install all of the dependencies with `npm`
+```
+npm install
+```
+
+#### Then run one of these two options: 
+```
+npm start
+ng serve 
+```
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+You can add components, or other Angular objects using cli commands. This is helpful, because it injects almost all of the neccessary entries into your Module, and adds the code to the appropriate place in the file system so that you can reference the new element in other parts of your application. 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+#### For example, to add a component run this command: 
+  ```
+  ng generate component component-name
+  ``` 
+  
+#### Here are more commands for things you might want to generate:  
+  ```ng generate directive directive-name
+  ng generate pipe pipe-name
+  ng generate service service-name
+  ng generate class class-name
+  ng generate module module-name
+  ```
+  
+  See this link for more options: [Angular CLI Code Scaffolding Options](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)
 
 ## Further help
 
