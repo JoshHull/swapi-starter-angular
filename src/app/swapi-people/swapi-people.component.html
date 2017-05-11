@@ -2,9 +2,13 @@
   swapi-people component!
 </p>
 
-  <div class="row data" *ngFor="let film of films" (click)="selectedFilm = film">
+  <div class="row data" *ngFor="let character of characters" (click)="selectedPerson = character">
     <div class="col-xs-6">
-     {{film.height}} -  {{ film.name }} 
+     {{character.height}} -  {{ character.name }} 
     </div>
- 
   </div>
+
+  <div class="row data">
+    <pre>{{selectedPerson | json}}</pre>
+  </div>
+

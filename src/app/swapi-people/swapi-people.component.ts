@@ -8,13 +8,13 @@ import { SwapiService } from '../swapi.service';
 })
 export class SwapiPeopleComponent implements OnInit {
 
-  films: any[];
-  selectedFilm: any;
+  characters: any[];
+  selectedPerson: any;
 
   constructor(private swapiService: SwapiService) { }
 
   ngOnInit() {
-    this.swapiService.getPeople().subscribe(films => this.films = films);
+    this.swapiService.getPeople().subscribe(people => this.characters = people);
   }
 
 }
