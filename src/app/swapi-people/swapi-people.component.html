@@ -1,0 +1,10 @@
+<p>
+  swapi-people component!
+</p>
+
+  <div class="row data" *ngFor="let film of films" (click)="selectedFilm = film">
+    <div class="col-xs-6">
+     {{film.height}} -  {{ film.name }} 
+    </div>
+ 
+  </div>
