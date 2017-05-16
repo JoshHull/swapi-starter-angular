@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { SwapiPeopleComponent } from './swapi-people/swapi-people.component';
 import { SwapiService } from './swapi.service';
 import { Sorter } from './sorter';
+import { SwapiData } from './swapi-data';
+
+import 'rxjs/add/observable/merge';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,7 @@ import { Sorter } from './sorter';
     FormsModule,
     HttpModule
   ],
-  providers: [SwapiService, Sorter],
+  providers: [SwapiService, SwapiData, Sorter],
   bootstrap: [AppComponent]
 })
 

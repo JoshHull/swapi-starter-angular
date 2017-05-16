@@ -2,13 +2,34 @@
   swapi-people component!
 </p>
 
-  <div class="row data" *ngFor="let character of characters" (click)="selectedPerson = character">
-    <div class="col-xs-6">
-     {{character.height}} -  {{ character.name }} 
-    </div>
-  </div>
 
+<div>
+<h1>People</h1>
+<select class="form-control" [(ngModel)]="selectedPerson" (ngModelChange)="evaluatePersonChoice()">
+    <option *ngFor="let person of people" [ngValue]="person">{{person.name}}</option>
+</select>
+ <div>
+    People count: {{people.length}}
+  </div>
+ 
+  <!-- you could use this to peek into your data -->
+  <!--
   <div class="row data">
     <pre>{{selectedPerson | json}}</pre>
-  </div>
+  </div>-->
 
+   <div *ngIf="selectedPerson">
+   <h3>{{selectedPerson.name}}</h3>
+   <h3>Films {{films.length}}</h3>
+   <div *ngFor="let film of films">
+     {{film.title}}
+   </div>
+ </div>
+</div>
+
+<div><br /><br />
+Climate: <input [(ngModel)]="userClimate">
+<div *ngIf="userClimate > ''">
+<p>A planet that is {{userClimate}} sounds nice!</p>
+</div>
+</div>
