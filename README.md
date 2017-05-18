@@ -6,7 +6,7 @@ We are hoping to get a little peek into your creative thinking and problem solvi
 
 Do your best in one hour to create the most beatiful, interesting star wars universe travel guide of all times. You should gather some information on some of the user's likes and dislikes and recommend a planet to visit on vacation. 
 
-We want to see something that will utilize the data at the Star Wars API - https://swapi.co in order to create a single page app that will show off your idea.  In this starter app, we've baked in some calls to the swapi.co endpoints, but you'll have to figureo out how to make the data interesting and useful for your solution. 
+We want to see something that will utilize the data at the Star Wars API - https://swapi.co in order to create a single page app that will show off your idea.  In this starter app, we've baked in some calls to the swapi.co endpoints, but you'll have to figure out how to make the data interesting and useful for your solution. 
 
 Clearly you don't have enough time to get fancy or detailed, so just do your best to get something working that will show off your main idea. Let the creative solution take front stage. Don't worry too much about making the code pretty, or organized properly.  
 
