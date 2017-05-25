@@ -17,10 +17,10 @@ export class SwapiService {
 
   constructor(private http: Http, private swapiData: SwapiData) { }
 
-/* We didn't want you to spend your time paging
-   if you didn't want to.  So we 'Explicitly Configured' the page numbers.
-   The methods here eliminate the hi level resource paging at SWAPI.
-*/
+  /* We didn't want you to spend your time paging
+     if you didn't want to.  So we 'Explicitly Configured' the page numbers.
+     The methods here eliminate the hi level resource paging at SWAPI.
+  */
 
   getAllFilms() {
     return this.getAllPages([
@@ -33,7 +33,7 @@ export class SwapiService {
 
 
     return this.getAllPages([
-        'people/'
+      'people/'
       , 'people/?page=2'
       , 'people/?page=3'
       , 'people/?page=4'
@@ -42,12 +42,12 @@ export class SwapiService {
       , 'people/?page=7'
       , 'people/?page=8'
       , 'people/?page=9'
-      ]);
+    ]);
   }
 
   getAllPlanets() {
     return this.getAllPages([
-        'planets/'
+      'planets/'
       , 'planets/?page=2'
       , 'planets/?page=3'
       , 'planets/?page=4'
@@ -58,8 +58,8 @@ export class SwapiService {
   }
 
   getAllSpecies() {
-     return this.getAllPages([
-        'species/'
+    return this.getAllPages([
+      'species/'
       , 'species/?page=2'
       , 'species/?page=3'
       , 'species/?page=4'
@@ -67,17 +67,17 @@ export class SwapiService {
   }
 
   getAllStarships() {
-     return this.getAllPages([
-        'starships/'
+    return this.getAllPages([
+      'starships/'
       , 'starships/?page=2'
       , 'starships/?page=3'
       , 'starships/?page=4'
-     ]);
+    ]);
   }
 
   getAllVehicles() {
     return this.getAllPages([
-        'vehicles/'
+      'vehicles/'
       , 'vehicles/?page=2'
       , 'vehicles/?page=3'
       , 'vehicles/?page=4'
@@ -99,9 +99,9 @@ export class SwapiService {
   }
 
   // It's kind of fun to watch what happens when you use a merge instead of a forkJoin.
-   getAllPeopleMerge() {
+  getAllPeopleMerge() {
     return Observable.merge(
-        this.getResultArrayForPage(this.swapiUrl + 'people/')
+      this.getResultArrayForPage(this.swapiUrl + 'people/')
       , this.getResultArrayForPage(this.swapiUrl + 'people/?page=2')
       , this.getResultArrayForPage(this.swapiUrl + 'people/?page=3')
       , this.getResultArrayForPage(this.swapiUrl + 'people/?page=4')
@@ -127,10 +127,10 @@ export class SwapiService {
 
   private getResultArrayForPage(url: string) {
     return this.http.get(url)
-        .map((response: Response) => {
-            return response.json().results;
-        })
-        .catch(this.handleError);
+      .map((response: Response) => {
+        return response.json().results;
+      })
+      .catch(this.handleError);
   }
 
   getAllObjectsFor(urls: string[]) {
@@ -145,24 +145,24 @@ export class SwapiService {
 
   getObjectFor(url: string) {
     return this.http.get(url)
-        .map((response: Response) => {
-            return response.json();
-        })
-        .catch(this.handleError);
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
-      console.error('server error:', error);
+    console.error('server error:', error);
 
-      if (error instanceof Response) {
-        let errMessage = '';
-        try {
-          errMessage = error.json().error;
-        } catch (err) {
-          errMessage = error.statusText;
-        }
-        return Observable.throw(errMessage);
+    if (error instanceof Response) {
+      let errMessage = '';
+      try {
+        errMessage = error.json().error;
+      } catch (err) {
+        errMessage = error.statusText;
       }
-      return Observable.throw(error || 'Server Error!!');
+      return Observable.throw(errMessage);
+    }
+    return Observable.throw(error || 'Server Error!!');
   }
 }

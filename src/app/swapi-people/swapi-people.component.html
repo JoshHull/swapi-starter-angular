@@ -1,27 +1,27 @@
 <div>
-<h3>Hi! I picked a person!</h3>
-<p  class="lead">I'll give you a hint, and then you pick who you think it is from the dropdown</p>
-  
+  <h3>Hi! I picked a person!</h3>
+  <p class="lead">I'll give you a hint, and then you pick who you think it is from the dropdown</p>
+
   <!-- you could use this to peek into your data -->
   <!--<div class="row data">
     <pre>{{randomlyChosenPerson | json}}</pre>
   </div>-->
 
-   <div *ngIf="randomlyChosenPerson">
-   <h3>HINT: </h3>
-   <blockquote *ngFor=" let hint of hints ">
-     <p>{{ hint }}</p>
-   </blockquote>
- </div>
+  <div *ngIf="randomlyChosenPerson">
+    <h3>HINT: </h3>
+    <blockquote *ngFor=" let hint of hints ">
+      <p>{{ hint }}</p>
+    </blockquote>
+  </div>
 </div>
 
 <h3>Who do you think it is?</h3>
 <select class="form-control" [(ngModel)]="guessedCharacter" (ngModelChange)="evaluateCharacterGuess()">
     <option *ngFor="let person of peopleThatMatchTheHints" [ngValue]="person">{{person.name}}</option>
 </select>
- <div>
-    Number of people to guess from: {{peopleThatMatchTheHints.length}}
-  </div>
+<div>
+  Number of people to guess from: {{peopleThatMatchTheHints.length}}
+</div>
 
 <h3>You've made {{numberOfGuesses}} guesses</h3>
 <div *ngIf="correctGuess">
@@ -31,7 +31,7 @@
 <div *ngIf="(numberOfGuesses > 0) && !correctGuess">
   <h1>NOPE</h1>
 </div>
- 
+
 <!-- We left this here so you'd have an example of text input: -->
 <!--
 

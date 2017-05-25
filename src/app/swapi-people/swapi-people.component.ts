@@ -34,39 +34,39 @@ export class SwapiPeopleComponent implements OnInit {
   }
 
   setUpGame() {
-      const i: number = Math.round(Math.random() * this.allCharacters.length);
-      this.randomlyChosenPerson = this.allCharacters[i];
+    const i: number = Math.round(Math.random() * this.allCharacters.length);
+    this.randomlyChosenPerson = this.allCharacters[i];
 
-      this.hintAndFilterEyeColor();
+    this.hintAndFilterEyeColor();
   }
 
   hintAndFilterFilms() {
     this.swapiService.getAllObjectsFor(this.randomlyChosenPerson.films).subscribe(
-        films => {
-          films.forEach(film => this.hints.push(film.title));
-        }
+      films => {
+        films.forEach(film => this.hints.push(film.title));
+      }
     );
 
     this.allCharacters.forEach(person => {
-        let hasFilmMatch = false;
-        this.randomlyChosenPerson.films.forEach(film => { if (person.films.indexOf(film) > 0) { hasFilmMatch = true; } } );
-        if (hasFilmMatch) {
-          this.peopleThatMatchTheHints.push(person);
-        }
+      let hasFilmMatch = false;
+      this.randomlyChosenPerson.films.forEach(film => { if (person.films.indexOf(film) > 0) { hasFilmMatch = true; } });
+      if (hasFilmMatch) {
+        this.peopleThatMatchTheHints.push(person);
+      }
     });
   }
 
   hintAndFilterSpecies() {
     this.swapiService.getObjectFor(this.randomlyChosenPerson.species).subscribe(
-        species => {
-          this.hints.push(species.name);
-        }
+      species => {
+        this.hints.push(species.name);
+      }
     );
 
     this.allCharacters.forEach(person => {
-        if (this.randomlyChosenPerson.species === person.species) {
-          this.peopleThatMatchTheHints.push(person);
-        }
+      if (this.randomlyChosenPerson.species === person.species) {
+        this.peopleThatMatchTheHints.push(person);
+      }
     });
   }
 
@@ -74,9 +74,9 @@ export class SwapiPeopleComponent implements OnInit {
     this.hints.push(this.randomlyChosenPerson.eye_color);
 
     this.allCharacters.forEach(person => {
-        if (this.randomlyChosenPerson.eye_color === person.eye_color) {
-          this.peopleThatMatchTheHints.push(person);
-        }
+      if (this.randomlyChosenPerson.eye_color === person.eye_color) {
+        this.peopleThatMatchTheHints.push(person);
+      }
     });
   }
 
