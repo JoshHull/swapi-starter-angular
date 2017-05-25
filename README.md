@@ -4,15 +4,24 @@
 
 We are hoping to get a little peek into your creative thinking and problem solving, with a side effect of you getting to show off your technical skills with Angular, CSS and Typescript. 
 
-Do your best in one hour to create the most beatiful, interesting star wars universe travel guide of all times. You should gather some information on some of the user's likes and dislikes and recommend a planet to visit on vacation. 
+We want to see something that will utilize the data at the Star Wars API - https://swapi.co. In this starter app, we've created a starting point.  It leaves a lot to be desired. You'll spend your time making the app more interesting, and user friendly. 
 
-We want to see something that will utilize the data at the Star Wars API - https://swapi.co in order to create a single page app that will show off your idea.  In this starter app, we've baked in some calls to the swapi.co endpoints, but you'll have to figure out how to make the data interesting and useful for your solution. 
-
-Clearly you don't have enough time to get fancy or detailed, so just do your best to get something working that will show off your main idea. Let the creative solution take front stage. Don't worry too much about making the code pretty, or organized properly.  
+Clearly you don't have enough time to get fancy or detailed, so just do your best to get something working that will show off your ideas. Let the creative solution take front stage. Don't worry too much about making the code pretty, or organized properly.  
 
 After the exercise, we will join you for a short demo, and then we'll collectively brainstorm to come up with something to add to it together. 
 
-## Requirements
+Here is a backlog of issues. In addition fixing any of these, come up with at least one thing that you come up (something not on this list) that might make the app more interesting: 
+
+  ```
+  1. There are only a few hints. That's not very interesting. 
+  2. The list of people matching the hints keeps getting bigger.  That's not right.  
+  3. The hints don't make sense...
+  4. The flow of the game isn't good.  It should have a fail point, a win condition, and also a way to start the game over.
+  5. After I guess a character, they're still in the list of options to guess!
+  6. I don't remember who I guessed already.
+  ```
+
+## Technical Details
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.  You will need NPM and Angular CLI installed in order run the commands listed here. 
 
