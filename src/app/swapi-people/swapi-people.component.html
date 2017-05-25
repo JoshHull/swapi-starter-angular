@@ -1,35 +1,46 @@
 <p>
-  swapi-people component!
+  swapi-people components!
 </p>
 
 
 <div>
-<h1>People</h1>
-<select class="form-control" [(ngModel)]="selectedPerson" (ngModelChange)="evaluatePersonChoice()">
-    <option *ngFor="let person of people" [ngValue]="person">{{person.name}}</option>
-</select>
- <div>
-    People count: {{people.length}}
-  </div>
- 
+<h1>Hi!  I picked a person!</h1>
+
   <!-- you could use this to peek into your data -->
-  <!--
-  <div class="row data">
-    <pre>{{selectedPerson | json}}</pre>
+  
+  <!--<div class="row data">
+    <pre>{{hiddenPerson | json}}</pre>
   </div>-->
 
-   <div *ngIf="selectedPerson">
-   <h3>{{selectedPerson.name}}</h3>
-   <h3>Films {{films.length}}</h3>
-   <div *ngFor="let film of films">
-     {{film.title}}
+   <div *ngIf="hiddenPerson">
+   <!--<h3>{{selectedPerson.name}}</h3>-->
+   <h3>HINT: </h3>
+   <div *ngFor=" let hint of hints ">
+     {{ hint }}
    </div>
  </div>
 </div>
 
-<div><br /><br />
+<h2>Pick your guess from this list</h2>
+<select class="form-control" [(ngModel)]="selectedPerson" (ngModelChange)="evaluatePersonChoice()">
+    <option *ngFor="let person of filterPeople" [ngValue]="person">{{person.name}}</option>
+</select>
+ <div>
+    People count: {{filterPeople.length}}
+  </div>
+
+<h3>Choice count: {{choiceCount}}</h3>
+<div *ngIf="found">
+  <h1>FOUND</h1>
+</div>
+<div *ngIf="(choiceCount > 0) && !found">
+  <h1>NOPE</h1>
+</div>
+
+ 
+<!--<div><br /><br />
 Climate: <input [(ngModel)]="userClimate">
 <div *ngIf="userClimate > ''">
 <p>A planet that is {{userClimate}} sounds nice!</p>
 </div>
-</div>
+</div>-->
