@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { SwapiData } from './swapi-data';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/switchMap';
 
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/observable/from';
 
 
 @Injectable()
 export class SwapiService {
   swapiUrl = 'http://swapi.co/api/';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private swapiData: SwapiData) { }
 
 /* We didn't want you to spend your time paging
    if you didn't want to.  So we 'Explicitly Configured' the page numbers.
@@ -27,6 +29,9 @@ export class SwapiService {
   }
 
   getAllPeople() {
+    // return Observable.from(this.swapiData.people);
+
+
     return this.getAllPages([
         'people/'
       , 'people/?page=2'
@@ -131,7 +136,11 @@ export class SwapiService {
   getAllObjectsFor(urls: string[]) {
     const obsArray = [];
     urls.forEach(suffix => obsArray.push(this.getObjectFor(suffix)));
-    return Observable.forkJoin(obsArray);
+    return Observable.forkJoin(obsArray).map(obsResult => {
+      let metaResults: any[] = [];
+      metaResults = metaResults.concat(obsResult);
+      return metaResults;
+    });
   }
 
   getObjectFor(url: string) {
