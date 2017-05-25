@@ -10,82 +10,84 @@ import { Sorter } from '../sorter';
 
 export class SwapiPeopleComponent implements OnInit {
 
-  userClimate: string;
-  selectedPerson: any;
-  hiddenPerson: any;
+  allCharacters: any[] = [];
+  randomlyChosenPerson: any;
 
   hints: any[] = [];
+  peopleThatMatchTheHints: any[] = [];
 
-  people: any[] = [];
-  filterPeople: any[] = [];
-  films: any[] = [];
-
-  choiceCount = 0;
-  found = false;
+  guessedCharacter: any;
+  numberOfGuesses = 0;
+  correctGuess = false;
 
   constructor(private sorter: Sorter, private swapiService: SwapiService) { }
 
   ngOnInit() {
     this.swapiService.getAllPeople().subscribe(data => {
 
-      this.people = this.people.concat(data);
-      this.sorter.sort(this.people, 'name');
+      this.allCharacters = this.allCharacters.concat(data);
+      this.sorter.sort(this.allCharacters, 'name');
 
-      let i = Math.round(Math.random() * this.people.length);
-      this.hiddenPerson = this.people[i];
-
-      this.hintAndFilterEyeColor();
+      this.setUpGame();
 
     });
   }
 
+  setUpGame() {
+      const i: number = Math.round(Math.random() * this.allCharacters.length);
+      this.randomlyChosenPerson = this.allCharacters[i];
+
+      this.hintAndFilterEyeColor();
+  }
+
   hintAndFilterFilms() {
-    this.swapiService.getAllObjectsFor(this.hiddenPerson.films).subscribe(
+    this.swapiService.getAllObjectsFor(this.randomlyChosenPerson.films).subscribe(
         films => {
           films.forEach(film => this.hints.push(film.title));
         }
     );
 
-    this.people.forEach(person => {     
+    this.allCharacters.forEach(person => {
         let hasFilmMatch = false;
-        this.hiddenPerson.films.forEach(film => {if (person.films.indexOf(film) > 0) {hasFilmMatch = true}})
+        this.randomlyChosenPerson.films.forEach(film => { if (person.films.indexOf(film) > 0) { hasFilmMatch = true; } } );
         if (hasFilmMatch) {
-          this.filterPeople.push(person);
+          this.peopleThatMatchTheHints.push(person);
         }
     });
   }
 
   hintAndFilterSpecies() {
-    this.swapiService.getObjectFor(this.hiddenPerson.species).subscribe(
+    this.swapiService.getObjectFor(this.randomlyChosenPerson.species).subscribe(
         species => {
           this.hints.push(species.name);
         }
     );
-    
-    this.people.forEach(person => {     
-        if (this.hiddenPerson.species == person.species) this.filterPeople.push(person);
+
+    this.allCharacters.forEach(person => {
+        if (this.randomlyChosenPerson.species === person.species) {
+          this.peopleThatMatchTheHints.push(person);
+        }
     });
   }
 
   hintAndFilterEyeColor() {
-    this.hints.push(this.hiddenPerson.eye_color);
-        
-    this.people.forEach(person => {     
-        if (this.hiddenPerson.eye_color == person.eye_color) this.filterPeople.push(person);
+    this.hints.push(this.randomlyChosenPerson.eye_color);
+
+    this.allCharacters.forEach(person => {
+        if (this.randomlyChosenPerson.eye_color === person.eye_color) {
+          this.peopleThatMatchTheHints.push(person);
+        }
     });
-
-
   }
- 
 
-  evaluatePersonChoice() {
-    this.choiceCount++;
+  evaluateCharacterGuess() {
+    this.numberOfGuesses++;
 
-    if (this.hiddenPerson.name === this.selectedPerson.name) {
-      this.found = true;
+    if (this.randomlyChosenPerson.name === this.guessedCharacter.name) {
+      this.correctGuess = true;
     } else {
-      this.found = false;
-      if (this.choiceCount % 2 == 0) {
+      this.correctGuess = false;
+      if (this.numberOfGuesses % 2 === 0) {
         this.hintAndFilterSpecies();
       } else {
         this.hintAndFilterFilms();
